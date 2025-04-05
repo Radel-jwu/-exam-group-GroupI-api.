@@ -12,6 +12,13 @@ router.get('/exams', (req, res) => {
 
 module.exports = router;
 
+router.post('/exams', (req, res) => {
+  const newExam = req.body;
+  exams.push(newExam);
+  res.status(201).json(newExam);
+});
+
+
 router.put('/exams/:id', (req, res) => {
   const examId = parseInt(req.params.id);
   const updatedData = req.body;
@@ -23,8 +30,3 @@ let examsPost = [
   { id: 1, subject: 'Math', date: '2025-04-10' }
 ];
 
-router.post('/exams', (req, res) => {
-  const newExam = req.body;
-  exams.push(newExam);
-  res.status(201).json(newExam);
-});
