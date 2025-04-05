@@ -1,11 +1,7 @@
-let exams = [
-  { id: 1, subject: 'Math', date: '2025-04-10' }
-];
-
 routes/exams.js
-
-router.post('/exams', (req, res) => {
-  const newExam = req.body;
-  exams.push(newExam);
-  res.status(201).json(newExam);
+router.put('/exams/:id', (req, res) => {
+  const examId = parseInt(req.params.id);
+  const updatedData = req.body;
+  exams = exams.map(exam => exam.id === examId ? { ...exam, ...updatedData } : exam);
+  res.json({ message: 'Exam updated' });
 });
